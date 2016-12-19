@@ -88,6 +88,4 @@ M.parallel([
   }
 
   console.log(JSON.stringify(result));
-}).run(function(error) { console.error(error); });
-
-//console.log(yesPeterList.length, yesNoPeterList.length);
+}).run(function(error) { error && console.error(error); });

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+ACCESS_TOKEN=`cat ACCESS_TOKEN.txt` node tinder > tinder.json
+
+sleep 1
+
+node tinder2 > tinder2.json
+
+node tinder3 > index.html

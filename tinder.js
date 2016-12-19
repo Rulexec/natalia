@@ -18,5 +18,5 @@ api.getPollVoters({
 }).bind(function(data) {
   console.log(JSON.stringify(data));
 }).run(function(error) {
-  console.error(error);
+  error && console.error(error);
 });

@@ -4,20 +4,49 @@ let print = process.stdout.write.bind(process.stdout);
 
 print(`<!doctype html><html><head><meta charset='utf'><title>Наталья собирает, Александр организует</title>`);
 
+print(`<script>
+function showAll() {
+  Array.from(document.getElementsByClassName('user')).forEach(el => {el.style.display = 'inline-block'});
+}
+function showMales() {
+  Array.from(document.getElementsByClassName('male')).forEach(el => {el.style.display = 'inline-block'});
+  Array.from(document.getElementsByClassName('female')).forEach(el => {el.style.display = 'none'});
+  Array.from(document.getElementsByClassName('unknown')).forEach(el => {el.style.display = 'none'});
+}
+function showFemales() {
+  Array.from(document.getElementsByClassName('female')).forEach(el => {el.style.display = 'inline-block'});
+  Array.from(document.getElementsByClassName('male')).forEach(el => {el.style.display = 'none'});
+  Array.from(document.getElementsByClassName('unknown')).forEach(el => {el.style.display = 'none'});
+}
+function showUnknown() {
+  Array.from(document.getElementsByClassName('unknown')).forEach(el => {el.style.display = 'inline-block'});
+  Array.from(document.getElementsByClassName('male')).forEach(el => {el.style.display = 'none'});
+  Array.from(document.getElementsByClassName('female')).forEach(el => {el.style.display = 'none'});
+}
+</script>`);
+
 print(`<style>
 .users-group > .user {
   display: inline-block;
   padding: 2em;
 }
+.male { background: #f1f4fd; }
 </style>`);
 
 print(`</head><body>`);
+
+print(`<p>
+  <button onclick='showFemales()'>Девушки</button>
+  <button onclick='showMales()'>Парни</button>
+  <button onclick='showAll()'>Все</button>
+  <!--<button onclick='showUnknown()'>Без пола</button>-->
+</p>`);
 
 function renderUsers(users) {
   print(`<div class='users-group'>`);
 
   users.forEach(user => {
-    print(`<div class='user'>`);
+    print(`<div class='user${ user.sex === 1 ? ' female' : user.sex === 2 ? ' male' : ' unknown' }'>`);
     print(`<a href='https://vk.com/id${user.uid}'>`);
     print(`<img src='${user.photo_big}'>`);
     print(`<p>${user.first_name} ${user.last_name}</p>`);
