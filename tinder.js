@@ -6,7 +6,7 @@ let ownerId = 79796,
     yesPeterId = 829072611,
     yesNoPeterId = 829072612;
 
-let accessToken = '164cdf3a6a531db2851c5aa08de1b9a2aa78a91843fd91bbd39e180a71c96f4bfe6617aae396f4ba3b800';
+let accessToken = process.env.ACCESS_TOKEN;
 
 api.getPollVoters({
   accessToken, ownerId, pollId,
